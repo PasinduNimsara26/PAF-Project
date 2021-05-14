@@ -67,7 +67,7 @@ public class BuyerAPI extends HttpServlet {
  		
 		 Map paras = getParasMap(request);
 		 
-		 String output = itemObj.updatebuyer(paras.get("hidBuyerIDSave").toString(),
+		 String output = itemObj.updatebuyer(paras.get("ID").toString(),
 		 paras.get("FullName").toString(),
 		 paras.get("PhoneNumber").toString(),
 		 paras.get("Email").toString(),

@@ -30,12 +30,11 @@
 	
 	
 
-	<form id="formBuyer" name="formBuyer" method="post" action="Buyers.jsp">
+	<form id="formBuyer" name="formBuyer">
 	
  
  	FullName: 
-	<input id="FullName" name="FullName" type="text" 
-				  class="form-control form-control-sm">
+	<input id="FullName" name="FullName" type="text"  class="form-control form-control-sm">
 	
 
 	<br> PhoneNumber: 

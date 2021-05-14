@@ -1,7 +1,7 @@
 
 $(document).ready(function()
 	 { 
- 
+	console.log("tets");
 		 $("#alertSuccess").hide(); 
 		 $("#alertError").hide(); 
 	}); 
@@ -10,6 +10,8 @@ $(document).ready(function()
 // SAVE ============================================
 
 $(document).on("click", "#btnSave", function(event){ 
+	
+	console.log("tets");
 	// Clear alerts---------------------
 	 $("#alertSuccess").text(""); 
 	 $("#alertSuccess").hide(); 
@@ -19,6 +21,7 @@ $(document).on("click", "#btnSave", function(event){
  	 
  	 // Form validation-------------------
 	var status = validateBuyerForm(); 
+	console.log(status);
 	if (status != true){ 
  		
  		$("#alertError").text(status); 
@@ -31,6 +34,7 @@ $(document).on("click", "#btnSave", function(event){
  		
  		
 		var type = ($("#hidBuyerIDSave").val() == "") ? "POST" : "PUT"; 
+		console.log(type);
  		
 		 $.ajax( 
 	     { 
@@ -52,7 +56,7 @@ function onBuyerSaveComplete(response, status){
  
  			if (status == "success"){ 
  	   		 	var resultSet = JSON.parse(response); 
- 	   	 
+ 	   		 	console.log(resultSet);
 			 	if (resultSet.status.trim() == "success"){ 
  
  					$("#alertSuccess").text("Successfully saved."); 
@@ -77,7 +81,7 @@ function onBuyerSaveComplete(response, status){
 	 	 		$("#alertError").show(); 
  		} 
  		
-	    $("#hidBuyerIDSave").val(""); 
+	    $("#ID").val(""); 
 	    $("#formBuyer")[0].reset();
  
    }
@@ -88,7 +92,7 @@ function onBuyerSaveComplete(response, status){
  	 
 	$(document).on("click", ".btnupdate", function(event){ 
 	
-	$("#hidBuyerIDSave").var($(this).closest("tr").find('#hidBuyerIDUpdate').val()); 
+	$("#ID").val($(this).data("itemid"));
  	$("#FullName").var($(this).closest("tr").find('td:eq(0)').text()); 
 	$("#PhoneNumber").var($(this).closest("tr").find('td:eq(1)').text()); 
 	$("#Email").var($(this).closest("tr").find('td:eq(2)').text()); 
@@ -106,7 +110,7 @@ function onBuyerSaveComplete(response, status){
  		 	{ 
 				 url : "BuyerAPI", 
 				 type : "DELETE", 
-		   		 data : "ID=" + $(this).data("id"),
+		   		 data : "ID=" + $(this).data("itemid"),
  		 		 dataType : "text", 
 			 	complete : function(response, status) 
 		 		{
@@ -158,33 +162,40 @@ function onBuyerSaveComplete(response, status){
  	 
  	 // CLIENT-MODEL================================================================
  	 
- 	 function validateByerForm(){ 
+
+ 	 function validateBuyerForm(){ 
+ 		 
+ 		if ($("#FullName").val().trim() == "") 
+ 		 { 
+ 		 return "Full Name Required!"; 
+ 		 }
 
 	// name
-	if ($("#FullName").var().trim() == ""){ 
+	if ($("#FullName").val().trim() == ""){ 
  	return "Insert Full Name."; 
  	}
- 	 
 	// phone number
-	if ($("#PhoneNumber").var().trim() == ""){ 
+	if ($("#PhoneNumber").val().trim() == ""){ 
  	return "Insert Phone Number."; 
  	}
  	 
 	// email
-	if ($("#Email").var().trim() == ""){ 
+	if ($("#Email").val().trim() == ""){ 
  	return "Insert Email."; 
  	} 
 
 	// address
-	if ($("#Address").var().trim() == ""){ 
+	if ($("#Address").val().trim() == ""){ 
  	return "Insert Address."; 
  	}
  	
  	// Birthday
-	if ($("#Birthdate").var().trim() == ""){ 
+	if ($("#Birthdate").val().trim() == ""){ 
  	return "Insert Birth date."; 
  	}
-
- 
+	
+	return true;
 }
+ 		 
+ 	
  	 
