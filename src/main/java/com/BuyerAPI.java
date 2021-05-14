@@ -61,13 +61,14 @@ public class BuyerAPI extends HttpServlet {
 	}
 	
 	
+	// update Operation
 	protected void doPut(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
  		
  		
  		
 		 Map paras = getParasMap(request);
 		 
-		 String output = itemObj.updatebuyer(paras.get("ID").toString(),
+		 String output = itemObj.updatebuyer(paras.get("hidBuyerIDSave").toString(),
 		 paras.get("FullName").toString(),
 		 paras.get("PhoneNumber").toString(),
 		 paras.get("Email").toString(),
@@ -78,11 +79,12 @@ public class BuyerAPI extends HttpServlet {
 		 }
 	
 	
+	// delete Operation
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response)throws ServletException, IOException{
 		
 			 Map paras = getParasMap(request);
 			 
-			 String output = itemObj.deletebuyer(paras.get("ID").toString());
+			 String output = itemObj.deletebuyer(paras.get("BuyerID").toString());
 			 response.getWriter().write(output);
 			}
 	 

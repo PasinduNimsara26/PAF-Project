@@ -21,7 +21,7 @@ $(document).on("click", "#btnSave", function(event){
  	 
  	 // Form validation-------------------
 	var status = validateBuyerForm(); 
-	console.log(status);
+
 	if (status != true){ 
  		
  		$("#alertError").text(status); 
@@ -34,8 +34,7 @@ $(document).on("click", "#btnSave", function(event){
  		
  		
 		var type = ($("#hidBuyerIDSave").val() == "") ? "POST" : "PUT"; 
-		console.log(type);
- 		
+
 		 $.ajax( 
 	     { 
 				 url : "BuyerAPI", 
@@ -56,12 +55,12 @@ function onBuyerSaveComplete(response, status){
  
  			if (status == "success"){ 
  	   		 	var resultSet = JSON.parse(response); 
- 	   		 	console.log(resultSet);
+ 	   		
 			 	if (resultSet.status.trim() == "success"){ 
  
  					$("#alertSuccess").text("Successfully saved."); 
  					$("#alertSuccess").show(); 
- 					$("#divItemsGrid").html(resultSet.data);
+ 					$("#divBuyersGrid").html(resultSet.data);
  	 	 	
  	 	 	} 
  	 	 	else if (resultSet.status.trim() == "error"){ 
@@ -81,7 +80,7 @@ function onBuyerSaveComplete(response, status){
 	 	 		$("#alertError").show(); 
  		} 
  		
-	    $("#ID").val(""); 
+	    $("#hidBuyerIDSave").val(""); 
 	    $("#formBuyer")[0].reset();
  
    }
@@ -92,12 +91,12 @@ function onBuyerSaveComplete(response, status){
  	 
 	$(document).on("click", ".btnupdate", function(event){ 
 	
-	$("#ID").val($(this).data("itemid"));
- 	$("#FullName").var($(this).closest("tr").find('td:eq(0)').text()); 
-	$("#PhoneNumber").var($(this).closest("tr").find('td:eq(1)').text()); 
-	$("#Email").var($(this).closest("tr").find('td:eq(2)').text()); 
-	$("#Address").var($(this).closest("tr").find('td:eq(3)').text());
-	$("#Birthdate").var($(this).closest("tr").find('td:eq(4)').text()); 
+	$("#hidBuyerIDSave").val($(this).data("buyerid"));
+ 	$("#FullName").val($(this).closest("tr").find('td:eq(0)').text()); 
+	$("#PhoneNumber").val($(this).closest("tr").find('td:eq(1)').text()); 
+	$("#Email").val($(this).closest("tr").find('td:eq(2)').text()); 
+	$("#Address").val($(this).closest("tr").find('td:eq(3)').text());
+	$("#Birthdate").val($(this).closest("tr").find('td:eq(4)').text()); 
 });
 
 
@@ -110,7 +109,7 @@ function onBuyerSaveComplete(response, status){
  		 	{ 
 				 url : "BuyerAPI", 
 				 type : "DELETE", 
-		   		 data : "ID=" + $(this).data("itemid"),
+		   		 data : "BuyerID=" + $(this).data("buyerid"),
  		 		 dataType : "text", 
 			 	complete : function(response, status) 
 		 		{
@@ -136,7 +135,7 @@ function onBuyerSaveComplete(response, status){
  				{ 
 		 			 $("#alertSuccess").text("Successfully deleted."); 
 	 		 		 $("#alertSuccess").show(); 
- 					 $("#divItemsGrid").html(resultSet.data); 
+ 					 $("#divBuyersGrid").html(resultSet.data); 
  	
 	  			}else if (resultSet.status.trim() == "error")
 	  			{ 

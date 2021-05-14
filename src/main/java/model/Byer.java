@@ -80,8 +80,8 @@ public String readBuyer(){
 			
 	 
 			// buttons
-			output += "<td><input name='btnUpdate' type='button' value='Update' class='btnupdate btn btn-secondary'>data-ID='" + ID +"'></td>"
-				   + "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-ID='" + ID + "'></td></tr>";
+			output += "<td><input name='btnUpdate' type='button' value='Update' class='btnupdate btn btn-secondary' data-buyerid='" + ID +"'></td>"
+				   + "<td><input name='btnRemove' type='button' value='Remove' class='btnRemove btn btn-danger' data-buyerid='" + ID + "'></td></tr>";
 	
 	
 	
